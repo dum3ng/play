@@ -1,0 +1,212 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+#container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#main{
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 400px;
+    min-height: 300px;
+    display: flex;
+
+}
+.row {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-around;
+}
+.col {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-around;
+}
+#section-a {
+    display: flex;
+    flex:1;
+}
+#section-b {
+    display: flex;
+    flex:1;
+}
+#result {
+    width: 100%;
+    height: 100%;
+
+}
+.editor{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 10px;
+
+}
+
+.editor-wrapper{
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+/* .editor-wrapper::after { */
+/*     content: ''; */
+/*     position: absolute; */
+/*     bottom: 0; */
+/*     right: 20px; */
+/*     width: 20px; */
+/*     height: 20px; */
+/*     background: red; */
+/*     cursor: ew-resize; */
+    /* } */
+.handler {
+    position: absolute;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background: gray;
+}
+.result-wrapper {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#html, #css, #js {
+    position: absolute;
+}
+
+/* toolbar */
+button {
+
+}
+.row-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.col-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.flex-1 {
+    flex: 1;
+}
+.hidden {
+    display: none;
+}
+
+#toolbar {
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    border-bottom: solid 1px #eee;
+}
+
+.toggle-controls {
+    height: 100%;
+    width: 200px;
+    border-right: solid 1px #ccc;
+    padding: 0 20px;
+}
+
+.toggle {
+    height: 40px;
+    width: 50px;
+    background-color: white;
+}
+
+.clicked {
+    background-color: gray;
+}
+
+#run-js {
+    background: #ccc;
+    height: 66.7%;
+    weight: 50px;
+}
+#layout-controls {
+    height: 100%;
+    width: 200px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+input[name='layout'] {
+    display: none;
+}
+input[name='layout']:checked + label{
+    border: solid 1px red;
+    background-color: #aad4ff;
+}
+label[for^='layout'] {
+    flex: 1;
+    height: 100%;
+    border: none;
+    border-right: solid 1px rgba(100,100,100,0.5);
+    background-size: 40px auto;
+    background-position: center;
+}
+
+label[for='layout0'] {
+    background-image: url('../img/layout-0.svg');
+}
+label[for='layout1'] {
+    background-image: url('../img/layout-1.svg');
+}
+label[for='layout2'] {
+    background-image: url('../img/layout-2.svg');
+}
+label[for='layout3'] {
+    background-image: url('../img/layout-3.svg');
+}
+#layout-0, #layout-1, #layout-2, #layout-3 {
+    flex: 1;
+    border: none;
+    border-right: solid 1px rgba(100,100,100,0.5);
+    background-size: 40px auto;
+    background-position: center;
+}
+
+#layout-0 {
+    background-image: url('../img/layout-0.svg');
+}
+#layout-1 {
+    background-image: url('../img/layout-1.svg');
+}
+#layout-2 {
+    background-image: url('../img/layout-2.svg');
+}
+#layout-3 {
+    background-image: url('../img/layout-3.svg');
+}
+button[id^="layout"] {
+    height: 40px;
+}
+
+button {
+    outline: none;
+
+}
+button:hover{
+    cursor: pointer;
+}

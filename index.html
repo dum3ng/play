@@ -1,19 +1,75 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <link href="./src/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="container">
+    <div id="toolbar" class="row-flex">
+      <div class="flex-1">
+        <button id="run-js">run js</button>
+
+      </div>
+      <div class="toggle-controls row-flex">
+          <button class="toggle-html toggle">html</button>
+          <button class="toggle-css toggle">css</button>
+          <button class="toggle-js toggle">js</button>
+      </div>
+      <div id="layout-controls">
+        <input type="radio" name="layout" id="layout0"/>
+        <label for="layout0"></label>
+        <input type="radio" name="layout" id="layout1"/>
+        <label for="layout1"></label>
+        <input type="radio" name="layout" id="layout2"/>
+        <label for="layout2"></label>
+        <input type="radio" name="layout" id="layout3"/>
+        <label for="layout3"></label>
+        <!-- <button id="layout-0" class="row-flex"></button> -->
+        <!-- <button id="layout-1" class="row-flex"></button> -->
+        <!-- <button id="layout-2" class="row-flex"></button> -->
+        <!-- <button id="layout-3" class="row-flex"></button> -->
+      </div>
+    </div>
+
+    <div id="main" class="row">
+
+      <div id="section-a" class="row">
+
+        <div class="editor-wrapper">
+          <div class="editor" id="html"></div>
+          <div class="handler"></div>
+        </div>
+
+        <div class="editor-wrapper">
+          <div class="editor" id="css"></div>
+        </div>
+
+        <div class="editor-wrapper">
+          <div class="editor" id="js"></div>
+        </div>
+
+      </div>
+
+      <div id="section-b" class="row">
+        <div class="result-wrapper ">
+          <iframe id="result" sandbox="allow-scripts allow-modals"></iframe>
+        </div>
+
+      </div>
+
+    </div>
+    </div>
+
   </body>
 
+ <script src="./src/js/ace/src/ace.js"></script>
   <script>
     // You can also require other files to run in this process
     require('./renderer.js')
   </script>
+
 </html>
