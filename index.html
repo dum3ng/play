@@ -4,20 +4,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Hello World!</title>
+  <link rel="stylesheet" href="./bower_components/material-design-lite/material.min.css">
+  <script src="./bower_components/material-design-lite/material.min.js"></script>
+  <!-- codemirror -->
+  <link rel="stylesheet" href="./bower_components/codemirror/lib/codemirror.css">
+  <script src="./bower_components/codemirror/lib/codemirror.js"></script>
+  <script src="./bower_components/codemirror/addon/edit/closetag.js"></script>
+     <script src="./bower_components/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="./bower_components/codemirror/mode/xml/xml.js"></script>
+  <script src="./bower_components/codemirror/mode/javascript/javascript.js"></script>
+  <script src="./bower_components/codemirror/mode/htmlembedded/htmlembedded.js"></script>
+  <script src="./bower_components/codemirror/mode/css/css.js"></script>
+    <link rel="stylesheet" href="./bower_components/codemirror/theme/zenburn.css"/>
   <link href="./src/css/style.css" rel="stylesheet" />
 </head>
 
 <body>
-  <div id="container">
-    <div id="toolbar" class="row-flex">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+         <div id="toolbar" class="row-flex">
       <div class="flex-1">
-        <button id="run-js">run js</button>
+
+        <button id="run-js" class="mdl-button mdl-js-button">
+          RunJS
+        </button>
+
+
 
       </div>
       <div class="toggle-controls row-flex">
-          <button class="toggle-html toggle">html</button>
-          <button class="toggle-css toggle">css</button>
-          <button class="toggle-js toggle">js</button>
+        <button class="toggle-html mdl-button mdl-js-button mdl-button--raised mdl-button--colored" >
+          html
+        </button>
+        <button class="toggle-css mdl-button mdl-js-button mdl-button--raised mdl-button--colored" >
+          css
+        </button>
+        <button class="toggle-js mdl-button mdl-js-button mdl-button--raised mdl-button--colored" >
+          js
+        </button>
+
       </div>
       <div id="layout-controls">
         <input type="radio" name="layout" id="layout0"/>
@@ -35,7 +60,10 @@
       </div>
     </div>
 
-    <div id="main" class="row">
+  </header>
+
+  <main class="mdl-layout__content">
+      <div id="main" class="row">
 
       <div id="section-a" class="row">
 
@@ -62,11 +90,18 @@
       </div>
 
     </div>
-    </div>
+    <div class="page-content"><!-- Your content goes here --></div>
+  </main>
+</div>
+  <div id="container">
+
+
+
+  </div>
 
   </body>
 
- <script src="./src/js/ace/src/ace.js"></script>
+ <!-- <script src="./src/js/ace/src/ace.js"></script> -->
   <script>
     // You can also require other files to run in this process
     require('./renderer.js')

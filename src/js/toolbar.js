@@ -18,7 +18,7 @@ ts.forEach((e) => {
   target = target.parentElement
 
   ele.addEventListener('click', () => {
-    ele.classList.toggle('clicked')
+    ele.classList.toggle('mdl-button--colored')
     target.classList.toggle('hidden')
   })
 })

@@ -1,16 +1,34 @@
 /* global ace */
-const htmlEditor = ace.edit('html')
-htmlEditor.setTheme('ace/theme/monokai')
-htmlEditor.getSession().setMode('ace/mode/html')
+// const htmlEditor = ace.edit('html')
+// htmlEditor.setTheme('ace/theme/monokai')
+// htmlEditor.getSession().setMode('ace/mode/html')
 
-const cssEditor = ace.edit('css')
-cssEditor.setTheme('ace/theme/monokai')
-cssEditor.getSession().setMode('ace/mode/css')
+// const cssEditor = ace.edit('css')
+// cssEditor.setTheme('ace/theme/monokai')
+// cssEditor.getSession().setMode('ace/mode/css')
 
-const jsEditor = ace.edit('js')
-jsEditor.setTheme('ace/theme/monokai')
-jsEditor.getSession().setMode('ace/mode/javascript')
+// const jsEditor = ace.edit('js')
+// jsEditor.setTheme('ace/theme/monokai')
+// jsEditor.getSession().setMode('ace/mode/javascript')
+/* global CodeMirror */
+const $q = document.getElementById.bind(document)
 
+const htmlEditor = CodeMirror($q('html'), {
+  mode: 'text/html',
+  theme: 'zenburn',
+  autoCloseTags: true,
+})
+const jsEditor = CodeMirror($q('js'), {
+  mode: 'javascript',
+  theme: 'zenburn',
+  autoCloseBrackets: true,
+})
+const cssEditor = CodeMirror($q('css'), {
+  mode: 'css',
+  theme: 'zenburn',
+  autoCloseBrackets: true,
+
+})
 // [htmlEditor,]
 
 const frame = document.getElementById('result')
@@ -30,7 +48,7 @@ const refreshResult = (withjs) => {
 }
 
 const getEditorValue = (editor) => {
-  return editor.getSession().getDocument().getValue()
+  return editor.getDoc().getValue()
 }
 
 const htmlChangeHandler = () => {
@@ -49,18 +67,22 @@ const cssChangeHandler = () => {
     frame.contentDocument.head.append(ele)
     style = ele
   }
-  style.innerText = getEditorValue(cssEditor)
+  style.innerHTML = getEditorValue(cssEditor)
 }
 
 const jsChangeHandler = () => {
+  // for code re-execute, we should create a new script tag
+  // everytime run js
   let script = frame.contentDocument.querySelector('#script')
-  if (!script) {
-    const ele = document.createElement('script')
-    ele.id = 'script'
-    frame.contentDocument.documentElement.append(ele)
-    script = ele
+  if (script) {
+    frame.contentDocument.documentElement.removeChild(script)
   }
-  script.innerText = getEditorValue(jsEditor)
+  const ele = document.createElement('script')
+  ele.id = 'script'
+  frame.contentDocument.documentElement.append(ele)
+  script = ele
+
+  script.innerHTML = getEditorValue(jsEditor)
 }
 
 const delay = (f, t) => {
@@ -89,6 +111,7 @@ const registerJs = () => {
   const runJs = document.getElementById('run-js')
   runJs.addEventListener('click', (e) => {
     //   refreshResult(true)
+   // console.log(jsEditor.getDoc().getValue(';'))
     jsChangeHandler()
   })
 }
