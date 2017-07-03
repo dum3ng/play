@@ -116,6 +116,15 @@ const registerJs = () => {
   })
 }
 
+// add an key event listener to run js
+// ctrl+r
+document.addEventListener('keydown', function(e) {
+  if(e.ctrlKey && e.code=='KeyR') {
+    jsChangeHandler()
+  }
+})
+
+
 const init = () => {
   registerEvents()
   registerJs()
