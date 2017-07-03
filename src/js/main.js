@@ -13,7 +13,7 @@ jsEditor.getSession().setMode('ace/mode/javascript')
 
 // [htmlEditor,]
 
-const result = document.getElementById('result')
+const frame = document.getElementById('result')
 
 
 const makeSrc = (withjs) => {
@@ -24,9 +24,44 @@ const makeSrc = (withjs) => {
 }
 
 const refreshResult = (withjs) => {
-  result.srcdoc = makeSrc(withjs)
+  //frame.srcdoc = makeSrc(withjs)
+  // just replace the body with the content of html editor
+  // and replace
 }
 
+const getEditorValue = (editor) => {
+  return editor.getSession().getDocument().getValue()
+}
+
+const htmlChangeHandler = () => {
+  // replace the body
+  const body = frame.contentDocument.body
+  body.innerHTML = getEditorValue(htmlEditor)
+
+}
+
+const cssChangeHandler = () => {
+  // replace the style tag content
+  let style = frame.contentDocument.querySelector('#style')
+  if (!style) {
+    const ele = document.createElement('style')
+    ele.id = 'style'
+    frame.contentDocument.head.append(ele)
+    style = ele
+  }
+  style.innerText = getEditorValue(cssEditor)
+}
+
+const jsChangeHandler = () => {
+  let script = frame.contentDocument.querySelector('#script')
+  if (!script) {
+    const ele = document.createElement('script')
+    ele.id = 'script'
+    frame.contentDocument.documentElement.append(ele)
+    script = ele
+  }
+  script.innerText = getEditorValue(jsEditor)
+}
 
 const delay = (f, t) => {
   let timer
@@ -41,16 +76,20 @@ const delay = (f, t) => {
 }
 
 const registerEvents = () => {
-  [htmlEditor, cssEditor].forEach((editor) => {
-    editor.on('change', delay(() => refreshResult(false), 1000))
-  })
+  // [htmlEditor, cssEditor].forEach((editor) => {
+  //   editor.on('change', delay(() => refreshResult(false), 1000))
+  // })
+  htmlEditor.on('change', delay(() => htmlChangeHandler(), 1000))
+  cssEditor.on('change', delay(() => cssChangeHandler(), 1000))
+
 }
 
 // for toolbar
 const registerJs = () => {
   const runJs = document.getElementById('run-js')
   runJs.addEventListener('click', (e) => {
-    refreshResult(true)
+    //   refreshResult(true)
+    jsChangeHandler()
   })
 }
 
